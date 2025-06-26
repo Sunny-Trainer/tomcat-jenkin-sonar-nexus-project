@@ -9,5 +9,10 @@ steps {
 checkout scm 
 }
 }
+stage (' clean package') {
+steps {
+sh 'mvn clean package'
+}
+}
 }
 }
