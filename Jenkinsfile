@@ -39,16 +39,19 @@ pipeline {
             }
         }
 
-        stage('Deploy to Tomcat') {
+     stage('Deploy to Tomcat') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'tomcat-creds', usernameVariable: 'TOMCAT_USER', passwordVariable: 'TOMCAT_PASS')]) {
-                    sh """
-                    curl -T target/java-web-gui-app.war "http://$TOMCAT_USER:$TOMCAT_PASS@your-tomcat-host:8080/manager/text/deploy?path=/java-web-gui-app&update=true"
-                    """
-                }
+                deployToContainer adapters: [tomcat9(
+                    credentialsId: 'tomcat-creds',
+                    url: 'http://16.16.58.126:8085'
+                )],
+                contextPath: 'ajay',
+                war: 'target/ajay'
             }
         }
     }
+
+              
 
     post {
         always {
