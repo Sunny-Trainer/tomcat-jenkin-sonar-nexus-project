@@ -4,7 +4,7 @@ tools {
 maven 'maven'
 }
 stages {
-stage ('checkout')
+stage ('checkout') {
 steps {
 checkout scm 
 }
