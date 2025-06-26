@@ -32,4 +32,4 @@ sh 'mvn clean deploy -s /var/lib/jenkins/tools/hudson.tasks.Maven_MavenInstallat
     }
 
 }
-}
+
