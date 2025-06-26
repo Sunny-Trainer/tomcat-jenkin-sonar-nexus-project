@@ -32,16 +32,44 @@
     </dependencies>
 
     <repositories>
+        <!-- Release repository for dependencies -->
         <repository>
-            <id>nexus</id>
+            <id>nexus-releases</id>
             <url>http://your-nexus-url/repository/maven-releases/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+
+        <!-- Snapshot repository for dependencies -->
+        <repository>
+            <id>nexus-snapshots</id>
+            <url>http://your-nexus-url/repository/maven-snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </repository>
     </repositories>
 
     <distributionManagement>
+        <!-- Release deployment -->
         <repository>
-            <id>nexus</id>
-            <url>http://your-nexus-url/repository/maven-releases/</url>
+            <id>nexus-releases</id>
+            <url>http://56.228.82.224:8081/repository/maven-releases/</url>
         </repository>
+
+        <!-- Snapshot deployment -->
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <url>http://56.228.82.224:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
     </distributionManagement>
+
 </project>
+
