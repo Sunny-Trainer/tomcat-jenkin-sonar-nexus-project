@@ -19,5 +19,17 @@ steps {
 sh 'mvn clean deploy -s /var/lib/jenkins/tools/hudson.tasks.Maven_MavenInstallation/maven/conf/settings.xml'
 }
 }
+  stage('Deploy to Tomcat') {
+            steps {
+                deployToContainer adapters: [tomcat9(
+                    credentialsId: 'tomcat-creds',
+                    url: 'http://16.16.58.126:8085'
+                )],
+                contextPath: 'ajay',
+                war: 'target/ajay'
+            }
+        }
+    }
+
 }
 }
