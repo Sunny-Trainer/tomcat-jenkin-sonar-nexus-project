@@ -14,5 +14,10 @@ steps {
 sh 'mvn clean package'
 }
 }
+stage ('deploy') {
+steps {
+sh 'mvn deploy -s /var/lib/jenkins/tools/hudson.tasks.Maven_MavenInstallation/maven/conf/settings.xml'
+}
+}
 }
 }
