@@ -20,15 +20,16 @@ sh 'mvn clean deploy -s /var/lib/jenkins/tools/hudson.tasks.Maven_MavenInstallat
 }
 }
   stage('Deploy to Tomcat') {
-            steps {
-                deployToContainer adapters: [tomcat9(
-                    credentialsId: 'tomcat-creds',
-                    url: 'http://16.16.58.126:8085'
-                )],
-                contextPath: 'ajay',
-                war: 'target/ajay'
-            }
+    steps {
+        withCredentials([usernamePassword(credentialsId: 'tomcat-creds', usernameVariable: 'TOMCAT_USER', passwordVariable: 'TOMCAT_PASS')]) {
+            sh '''
+                curl --fail --silent --show-error -u $TOMCAT_USER:$TOMCAT_PASS \
+                    -T target/ajay.war \
+                    "http://16.16.58.126:8085/manager/text/deploy?path=/ajay&update=true"
+            '''
         }
+    }
+}
     }
 
 }
