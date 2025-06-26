@@ -67,7 +67,7 @@
         <!-- Snapshot deployment -->
         <snapshotRepository>
             <id>nexus-snapshots</id>
-            <url>http://16.16.58.126:8081/repository/maven-releases/</url>
+            <url>http://16.16.58.126:8081/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 
